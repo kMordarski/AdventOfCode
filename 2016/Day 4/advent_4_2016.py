@@ -2,7 +2,7 @@ import numpy as np
 
 import string
 
-data = np.loadtxt("C:/Users/kacpe/Desktop/Python_Advent_2016/dane_2016_4.txt", delimiter=",", dtype=str)
+data = np.loadtxt("dane_2016_4.txt", delimiter=",", dtype=str)
 
 def get_vars(line):
 
@@ -82,15 +82,14 @@ for item in data:
 
 print(result)
 
-### PART II ###
-
-alpha = list(string.ascii_lowercase)
+# ## PART II ## #
 
 p = np.r_[0:26]
 
 alph_dict = dict(zip(alpha, p))
 
 data
+
 
 def get_vars(line):
 
