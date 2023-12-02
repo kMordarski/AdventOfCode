@@ -45,7 +45,7 @@ sum_fin
 # PART II #
 ###########
 
-def find_numbers_1(string):
+def find_numbers(string):
     
     list_numb = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
              
@@ -61,58 +61,36 @@ def find_numbers_1(string):
 
     s = 0
 
-    first_dig = 0
-    
-    last_dig = 0
-
-    start = False
-
-    end = False
-
     for n in range(len(string)):
         
         for item in check_numb:
         
-            if first_dig == 0 and item in string[0:(n+1)]:
-                
-                first_dig = item
-                
-                start = True
+            if item in string[s:(n+1)]:
+                numbers_ocurr.append(item)
+                s = n + 1
+                break
             
-            if last_dig == 0 and item in string[(len(string) - (n+1)):len(string)]:
-                
-                last_dig = item
-                
-                end = True
-        
-        if start and end:
-            break        
-    
-    numbers_ocurr.append(first_dig)
-    numbers_ocurr.append(last_dig)
-    
     for p in range(len(numbers_ocurr)):
 
         if numbers_ocurr[p] in dict_numb.keys():
             numbers_ocurr[p] = dict_numb[numbers_ocurr[p]]    
     
-    if len(numbers_ocurr) == 0:
-        
-        print("There is no number in this line!")
-        return 0
+    number_to_ret = int(numbers_ocurr[0] + numbers_ocurr[-1])
     
-    else:
-        number_to_ret = int(numbers_ocurr[0] + numbers_ocurr[1])
-    
-        return number_to_ret
-    
-find_numbers_1(data[0])
-find_numbers("oneight")
+    return number_to_ret
+
+find_numbers(data[-1])
 
 sum_fin = 0
 
+arr_to_sum = np.arange(len(data))
+
 for x in range(len(data)):
-    print(x)
-    sum_fin += find_numbers_1(data[x])
+    arr_to_sum[x] = find_numbers(data[x])
+
+arr_to_sum.sum()
+
+for x in range(len(data)):
+    sum_fin = sum_fin + find_numbers(data[x])
 
 sum_fin
